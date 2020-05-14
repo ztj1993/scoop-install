@@ -1,6 +1,3 @@
-[submodule "apps/scoop/current"]
-	path = apps/scoop/current
-	url = https://gitee.com/zhangtianjie/scoop-lukesampson
 [submodule "buckets/main"]
 	path = buckets/main
 	url = https://github.com/ScoopInstaller/Main
