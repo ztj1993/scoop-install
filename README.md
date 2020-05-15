@@ -1,10 +1,10 @@
 # Scoop 索引
 
-## 日志
+## 构建方法
 ```
 git init
 git commit --only --allow-empty -m init
-git submodule add --depth 1 https://gitee.com/zhangtianjie/scoop-lukesampson apps/scoop/current
+git submodule add --depth 1 https://github.com/lukesampson/scoop apps/scoop/current
 git submodule add --depth 1 https://github.com/ScoopInstaller/Main buckets/main
 git submodule add --depth 1 https://github.com/lukesampson/scoop-extras buckets/extras
 git submodule add --depth 1 https://github.com/ScoopInstaller/Java buckets/java
@@ -14,25 +14,26 @@ git submodule add --depth 1 https://github.com/ScoopInstaller/PHP buckets/php
 git submodule add --depth 1 https://github.com/ScoopInstaller/Versions buckets/versions
 ```
 
-## 安装
+## 安装方式
 ```
-git clone --depth 1 https://github.com/ztj1993/scoop-index
+git clone --depth 1 https://github.com/ztj1993/scoop-index $env:USERPROFILE\scoop
+git -C $env:USERPROFILE\scoop submodule init
+git -C $env:USERPROFILE\scoop submodule update --depth 1
+git -C $env:USERPROFILE\scoop\apps\scoop\current am $env:USERPROFILE\scoop\patch\disable-automatic-update.patch
+
+. $env:USERPROFILE\scoop\apps\scoop\current\lib\core.ps1
+$dir = ensure (versiondir 'scoop' 'current')
+shim "$dir\bin\scoop.ps1" $false
+ensure_scoop_in_path
+
+scoop help
+```
+
+## 更新环境
+```
+git clone --depth 1 https://github.com/ztj1993/scoop-index .
 git submodule init
 git submodule update --depth 1
-```
-
-## 重装
-```
-cd $env:SCOOP
-Remove-Item .\apps\scoop -Force -Recurse -Confirm:$false
-Remove-Item .\buckets -Force -Recurse -Confirm:$false
-Remove-Item .\.git -Force -Recurse -Confirm:$false
-
-cd $env:TMP
-git clone --depth 1 https://github.com/ztj1993/scoop-index
-cd .\scoop-index
-git submodule init
-git submodule update --depth 1
-
-Copy-Item $env:TMP\scoop-index\* $env:SCOOP -Recurse -Force
+git submodule foreach git checkout master
+git submodule foreach git pull --depth 1 origin master
 ```
