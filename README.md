@@ -16,9 +16,14 @@ git submodule add --depth 1 https://github.com/ScoopInstaller/Versions buckets/v
 
 ## 安装方式
 ```
-git clone --depth 1 https://github.com/ztj1993/scoop-index $env:USERPROFILE\scoop
+git clone --no-checkout --depth 1 https://github.com/ztj1993/scoop-index $env:USERPROFILE\scoop\tmp
+Copy-Item $env:USERPROFILE\scoop\tmp\.git -Destination $env:USERPROFILE\scoop\.git -Recurse
+Remove-Item $env:USERPROFILE\scoop\tmp -Force -Recurse
+
+git -C $env:USERPROFILE\scoop checkout master
 git -C $env:USERPROFILE\scoop submodule init
 git -C $env:USERPROFILE\scoop submodule update --depth 1
+
 git -C $env:USERPROFILE\scoop\apps\scoop\current am $env:USERPROFILE\scoop\patch\disable-automatic-update.patch
 
 . $env:USERPROFILE\scoop\apps\scoop\current\lib\core.ps1
@@ -29,11 +34,22 @@ ensure_scoop_in_path
 scoop help
 ```
 
-## 更新环境
+## 删除环境
 ```
-git clone --depth 1 https://github.com/ztj1993/scoop-index .
-git submodule init
-git submodule update --depth 1
-git submodule foreach git checkout master
-git submodule foreach git pull --depth 1 origin master
+Remove-Item $env:USERPROFILE\scoop\.git -Force -Recurse
+
+Remove-Item $env:USERPROFILE\scoop\apps\scoop -Recurse
+
+Remove-Item $env:USERPROFILE\scoop\buckets\main -Force -Recurse
+Remove-Item $env:USERPROFILE\scoop\buckets\extras -Force -Recurse
+Remove-Item $env:USERPROFILE\scoop\buckets\java -Force -Recurse
+Remove-Item $env:USERPROFILE\scoop\buckets\nonportable -Force -Recurse
+Remove-Item $env:USERPROFILE\scoop\buckets\jetbrains -Force -Recurse
+Remove-Item $env:USERPROFILE\scoop\buckets\php -Force -Recurse
+Remove-Item $env:USERPROFILE\scoop\buckets\versions -Force -Recurse
+
+Remove-Item $env:USERPROFILE\scoop\patch -Force -Recurse
+Remove-Item $env:USERPROFILE\scoop\.gitignore -Force -Recurse
+Remove-Item $env:USERPROFILE\scoop\.gitmodules -Force -Recurse
+Remove-Item $env:USERPROFILE\scoop\README.md -Force -Recurse
 ```
