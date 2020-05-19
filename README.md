@@ -25,7 +25,7 @@ git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
 
 ## 安装方式
 ```
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
 
 mkdir $env:USERPROFILE\scoop -force
 
