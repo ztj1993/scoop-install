@@ -17,7 +17,7 @@ git submodule add --depth 1 https://github.com/ScoopInstaller/Versions buckets/v
 ## 打包构建
 ```
 git clone --no-checkout --depth 1 https://github.com/ztj1993/scoop-index scoop
-git -C scoop checkout 2019
+git -C scoop checkout master
 git -C scoop submodule init
 git -C scoop submodule update --depth 1
 git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
@@ -27,8 +27,8 @@ git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
 ```
 mkdir $env:USERPROFILE\scoop -force
 
-iwr https://github.com/ztj1993/scoop-index/archive/2019.zip -o scoop.zip
-copy scoop\scoop-index-2019 -Destination $env:USERPROFILE\scoop -recurse
+iwr https://github.com/ztj1993/scoop-index/archive/master.zip -o scoop.zip
+copy scoop\scoop-index-master -Destination $env:USERPROFILE\scoop -recurse
 
 . $env:USERPROFILE\scoop\apps\scoop\current\lib\core.ps1
 $dir = ensure (versiondir 'scoop' 'current')
