@@ -28,6 +28,7 @@ git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
 mkdir $env:USERPROFILE\scoop -force
 
 iwr https://github.com/ztj1993/scoop-index/archive/master.zip -o scoop.zip
+expand-archive scoop.zip
 copy scoop\scoop-index-master -Destination $env:USERPROFILE\scoop -recurse
 
 . $env:USERPROFILE\scoop\apps\scoop\current\lib\core.ps1
