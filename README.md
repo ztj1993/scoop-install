@@ -1,6 +1,6 @@
 # Scoop 索引
 
-## 构建方法
+## 初始构建
 ```
 git init
 git commit --only --allow-empty -m init
@@ -25,14 +25,7 @@ git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
 
 ## 安装方式
 ```
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
-
 mkdir $env:USERPROFILE\scoop -force
-
-iwr https://github.com/ztj1993/scoop-index/archive/master.zip -o scoop.zip
-expand-archive scoop.zip
-copy scoop\scoop-index-master -Destination $env:USERPROFILE\scoop -recurse
-
 . $env:USERPROFILE\scoop\apps\scoop\current\lib\core.ps1
 $dir = ensure (versiondir 'scoop' 'current')
 shim "$dir\bin\scoop.ps1" $false
