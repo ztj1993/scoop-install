@@ -1,25 +1,24 @@
-From c847e887b93df137228a6a499e0915297374da7a Mon Sep 17 00:00:00 2001
+From 89c5c339bd7ded8478a07fe83f563eb5f6f572f7 Mon Sep 17 00:00:00 2001
 From: Ztj <ztj1993@gmail.com>
-Date: Thu, 19 Mar 2020 10:18:44 +0800
-Subject: [PATCH] 安装应用时禁用更新
+Date: Thu, 13 Aug 2020 11:57:39 +0800
+Subject: [PATCH] disable update
 
 ---
- libexec/scoop-install.ps1 | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ lib/core.ps1 | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/libexec/scoop-install.ps1 b/libexec/scoop-install.ps1
-index 7044150..007466a 100644
---- a/libexec/scoop-install.ps1
-+++ b/libexec/scoop-install.ps1
-@@ -68,7 +68,7 @@ if ($global -and !(is_admin)) {
+diff --git a/lib/core.ps1 b/lib/core.ps1
+index a917f26..5b069aa 100644
+--- a/lib/core.ps1
++++ b/lib/core.ps1
+@@ -828,6 +828,7 @@ function last_scoop_update() {
  }
  
- if (is_scoop_outdated) {
--    scoop update
-+    warn "Scoop is outdated. Maybe you are installing an older version of apps."
- }
- 
- if ($apps.length -eq 1) {
---
-libgit2 0.28.0
+ function is_scoop_outdated() {
++    return $false
+     $last_update = $(last_scoop_update)
+     $now = [System.DateTime]::Now
+     if($null -eq $last_update) {
+-- 
+2.26.2.windows.1
 
