@@ -61,20 +61,19 @@ scoop help
 
 ## 删除环境
 ```
-Remove-Item $env:USERPROFILE\scoop\.git -Force -Recurse
+Remove-Item .git -Force -Recurse
 
-Remove-Item $env:USERPROFILE\scoop\apps\scoop -Recurse
+Remove-Item apps\scoop -Recurse
 
-Remove-Item $env:USERPROFILE\scoop\buckets\main -Force -Recurse
-Remove-Item $env:USERPROFILE\scoop\buckets\extras -Force -Recurse
-Remove-Item $env:USERPROFILE\scoop\buckets\java -Force -Recurse
-Remove-Item $env:USERPROFILE\scoop\buckets\nonportable -Force -Recurse
-Remove-Item $env:USERPROFILE\scoop\buckets\jetbrains -Force -Recurse
-Remove-Item $env:USERPROFILE\scoop\buckets\php -Force -Recurse
-Remove-Item $env:USERPROFILE\scoop\buckets\versions -Force -Recurse
+Remove-Item buckets\main -Force -Recurse
+Remove-Item buckets\extras -Force -Recurse
+Remove-Item buckets\java -Force -Recurse
+Remove-Item buckets\nonportable -Force -Recurse
+Remove-Item buckets\jetbrains -Force -Recurse
+Remove-Item buckets\php -Force -Recurse
+Remove-Item buckets\versions -Force -Recurse
 
-Remove-Item $env:USERPROFILE\scoop\patch -Force -Recurse
-Remove-Item $env:USERPROFILE\scoop\.gitignore -Force -Recurse
-Remove-Item $env:USERPROFILE\scoop\.gitmodules -Force -Recurse
-Remove-Item $env:USERPROFILE\scoop\README.md -Force -Recurse
+Remove-Item patch -Force -Recurse
+Remove-Item .gitignore -Force -Recurse
+Remove-Item README.md -Force -Recurse
 ```
