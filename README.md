@@ -50,6 +50,8 @@ git -C buckets/versions reset --hard 93c3a96a1fb58ba5155dd849926374df64d0473b
 
 ## 项目安装
 ```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
+
 mkdir $env:USERPROFILE\scoop -force
 . $env:USERPROFILE\scoop\apps\scoop\current\lib\core.ps1
 $dir = ensure (versiondir 'scoop' 'current')
