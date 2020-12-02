@@ -2,20 +2,19 @@
 
 ## 项目构建
 ```
-git clone --no-checkout --depth 1 https://github.com/ztj1993/scoop-index scoop
+mkdir scoop
 
-cd scoop
+git clone --depth 500 https://github.com/ztj1993/scoop-index scoop
+git clone --depth 500 https://github.com/lukesampson/scoop scoop/apps/scoop/current
+git clone --depth 500 https://github.com/ScoopInstaller/Main scoop/buckets/main
+git clone --depth 500 https://github.com/lukesampson/scoop-extras scoop/buckets/extras
+git clone --depth 500 https://github.com/ScoopInstaller/Java scoop/buckets/java
+git clone --depth 500 https://github.com/TheRandomLabs/scoop-nonportable scoop/buckets/nonportable
+git clone --depth 500 https://github.com/Ash258/Scoop-JetBrains scoop/buckets/jetbrains
+git clone --depth 500 https://github.com/ScoopInstaller/PHP scoop/buckets/php
+git clone --depth 500 https://github.com/ScoopInstaller/Versions scoop/buckets/versions
 
-git clone --depth 500 https://github.com/lukesampson/scoop apps/scoop/current
-git clone --depth 500 https://github.com/ScoopInstaller/Main buckets/main
-git clone --depth 500 https://github.com/lukesampson/scoop-extras buckets/extras
-git clone --depth 500 https://github.com/ScoopInstaller/Java buckets/java
-git clone --depth 500 https://github.com/TheRandomLabs/scoop-nonportable buckets/nonportable
-git clone --depth 500 https://github.com/Ash258/Scoop-JetBrains buckets/jetbrains
-git clone --depth 500 https://github.com/ScoopInstaller/PHP buckets/php
-git clone --depth 500 https://github.com/ScoopInstaller/Versions buckets/versions
-
-git -C apps/scoop/current am ../../../patch/disable-automatic-update.patch
+git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
 ```
 
 ## 更新环境
