@@ -4,15 +4,15 @@
 ```
 mkdir scoop
 
-git clone --depth 500 https://github.com/ztj1993/scoop-index scoop
-git clone --depth 500 https://github.com/lukesampson/scoop scoop/apps/scoop/current
-git clone --depth 500 https://github.com/ScoopInstaller/Main scoop/buckets/main
-git clone --depth 500 https://github.com/lukesampson/scoop-extras scoop/buckets/extras
-git clone --depth 500 https://github.com/ScoopInstaller/Java scoop/buckets/java
-git clone --depth 500 https://github.com/TheRandomLabs/scoop-nonportable scoop/buckets/nonportable
-git clone --depth 500 https://github.com/Ash258/Scoop-JetBrains scoop/buckets/jetbrains
-git clone --depth 500 https://github.com/ScoopInstaller/PHP scoop/buckets/php
-git clone --depth 500 https://github.com/ScoopInstaller/Versions scoop/buckets/versions
+git clone --depth 1 https://github.com/ztj1993/scoop-index scoop
+git clone --depth 1 https://github.com/lukesampson/scoop scoop/apps/scoop/current
+git clone --depth 1 https://github.com/ScoopInstaller/Main scoop/buckets/main
+git clone --depth 1 https://github.com/lukesampson/scoop-extras scoop/buckets/extras
+git clone --depth 1 https://github.com/ScoopInstaller/Java scoop/buckets/java
+git clone --depth 1 https://github.com/TheRandomLabs/scoop-nonportable scoop/buckets/nonportable
+git clone --depth 1 https://github.com/Ash258/Scoop-JetBrains scoop/buckets/jetbrains
+git clone --depth 1 https://github.com/ScoopInstaller/PHP scoop/buckets/php
+git clone --depth 1 https://github.com/ScoopInstaller/Versions scoop/buckets/versions
 
 git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
 ```
@@ -29,30 +29,14 @@ git -C buckets/php pull
 git -C buckets/versions pull
 ```
 
-## 项目锁定
-```
-git -C buckets/main rev-parse HEAD
-git -C buckets/main reset --hard d7ff2d94261b22a9901e8e08a009dd05f6b85497
-git -C buckets/extras rev-parse HEAD
-git -C buckets/extras reset --hard 31a5242463208798cfe8187b5c060694079c4181
-git -C buckets/java rev-parse HEAD
-git -C buckets/java reset --hard 30c9f331ba759f479d7d5e971049322f429c177b
-git -C buckets/nonportable rev-parse HEAD
-git -C buckets/nonportable reset --hard e0141b2a14004bff79af035aa0cfa1503ea9550a
-git -C buckets/jetbrains rev-parse HEAD
-git -C buckets/jetbrains reset --hard 6f4c8337599abdc6150cd4cc08174d763c5361b0
-git -C buckets/php rev-parse HEAD
-git -C buckets/php reset --hard 6ceb36a70072d94c9eb5bc5138f7118ce41fee9e
-git -C buckets/versions rev-parse HEAD
-git -C buckets/versions reset --hard 93c3a96a1fb58ba5155dd849926374df64d0473b
-```
-
 ## 项目安装
 ```
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
 
-mkdir $env:USERPROFILE\scoop -force
-. $env:USERPROFILE\scoop\apps\scoop\current\lib\core.ps1
+$env:SCOOP="$(Get-Location)"
+[Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
+
+. "$(Get-Location)\apps\scoop\current\lib\core.ps1"
 $dir = ensure (versiondir 'scoop' 'current')
 shim "$dir\bin\scoop.ps1" $false
 ensure_scoop_in_path
@@ -62,6 +46,8 @@ scoop help
 
 ## 删除环境
 ```
+scoop uninstall scoop
+
 Remove-Item .git -Force -Recurse
 
 Remove-Item apps\scoop -Recurse
