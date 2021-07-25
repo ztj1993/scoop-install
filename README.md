@@ -2,9 +2,7 @@
 
 ## 项目构建
 ```
-mkdir scoop
-
-git clone --depth 1 https://github.com/ztj1993/scoop-index scoop
+git clone --depth 1 https://github.com/ztj1993/scoop scoop
 git clone --depth 1 https://github.com/lukesampson/scoop scoop/apps/scoop/current
 git clone --depth 1 https://github.com/ScoopInstaller/Main scoop/buckets/main
 git clone --depth 1 https://github.com/lukesampson/scoop-extras scoop/buckets/extras
@@ -15,6 +13,8 @@ git clone --depth 1 https://github.com/ScoopInstaller/PHP scoop/buckets/php
 git clone --depth 1 https://github.com/ScoopInstaller/Versions scoop/buckets/versions
 
 git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
+
+zip -qr scoop-$(date "+%Y%m%d").zip ./scoop
 ```
 
 ## 更新环境
