@@ -1,0 +1,27 @@
+From fe1ef9534eda0d2ae0c966fad5b7c2d17e1b24e7 Mon Sep 17 00:00:00 2001
+From: Ztj <ztj1993@gmail.com>
+Date: Sun, 25 Jul 2021 15:38:28 +0800
+Subject: [PATCH] pre install
+
+---
+ libexec/scoop-install.ps1 | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/libexec/scoop-install.ps1 b/libexec/scoop-install.ps1
+index 7044150..b26d50b 100644
+--- a/libexec/scoop-install.ps1
++++ b/libexec/scoop-install.ps1
+@@ -28,6 +28,10 @@
+ . "$psscriptroot\..\lib\getopt.ps1"
+ . "$psscriptroot\..\lib\depends.ps1"
+ 
++if (test-path "$scoopdir\preinstall.ps1") {
++    . "$scoopdir\preinstall.ps1"
++}
++
+ reset_aliases
+ 
+ function is_installed($app, $global) {
+-- 
+2.31.0.windows.1
+
