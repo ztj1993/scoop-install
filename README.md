@@ -11,6 +11,7 @@ git clone --depth 1 https://github.com/TheRandomLabs/scoop-nonportable scoop/buc
 git clone --depth 1 https://github.com/Ash258/Scoop-JetBrains scoop/buckets/jetbrains
 git clone --depth 1 https://github.com/ScoopInstaller/PHP scoop/buckets/php
 git clone --depth 1 https://github.com/ScoopInstaller/Versions scoop/buckets/versions
+git clone --depth 1 https://github.com/ztj1993/scoop-bucket scoop/buckets/ztj1993
 
 git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
 git -C scoop/apps/scoop/current am ../../../patch/pre-install.patch
@@ -29,6 +30,7 @@ git -C buckets/nonportable pull
 git -C buckets/jetbrains pull
 git -C buckets/php pull
 git -C buckets/versions pull
+git -C buckets/ztj1993 pull
 ```
 
 ## 项目安装
