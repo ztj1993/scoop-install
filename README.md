@@ -20,6 +20,7 @@ zip -qr scoop-$(date "+%Y%m%d").zip ./scoop
 ```
 
 ## 更新环境
+在文件目录执行脚本：
 ```
 git pull
 git -C apps/scoop/current pull
@@ -34,6 +35,7 @@ git -C buckets/ztj1993 pull
 ```
 
 ## 项目安装
+在文件目录执行脚本：
 ```
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
 
@@ -49,7 +51,10 @@ scoop help
 ```
 
 ## 替换环境
+1.执行脚本：
 ```
+cd $env:SCOOP
+
 Remove-Item .git -Force -Recurse
 Remove-Item apps\scoop -Recurse
 Remove-Item buckets\main -Force -Recurse
@@ -64,9 +69,13 @@ Remove-Item patch -Force -Recurse
 Remove-Item .gitignore -Force -Recurse
 Remove-Item README.md -Force -Recurse
 ```
+2.加压文件到目录
 
 ## 删除环境
+1.执行脚本：
 ```
+echo $env:SCOOP
+
 scoop uninstall scoop
 
 Remove-Item .git -Force -Recurse
@@ -85,3 +94,4 @@ Remove-Item patch -Force -Recurse
 Remove-Item .gitignore -Force -Recurse
 Remove-Item README.md -Force -Recurse
 ```
+2.备份遗留文件
