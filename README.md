@@ -13,12 +13,14 @@ git clone --depth 1 https://github.com/ScoopInstaller/PHP scoop/buckets/php
 git clone --depth 1 https://github.com/ScoopInstaller/Versions scoop/buckets/versions
 
 git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
+git -C scoop/apps/scoop/current am ../../../patch/pre-install.patch
 
 zip -qr scoop-$(date "+%Y%m%d").zip ./scoop
 ```
 
 ## 更新环境
 ```
+git pull
 git -C apps/scoop/current pull
 git -C buckets/main pull
 git -C buckets/extras pull
