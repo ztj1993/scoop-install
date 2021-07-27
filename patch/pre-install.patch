@@ -15,8 +15,8 @@ index 7044150..b26d50b 100644
  . "$psscriptroot\..\lib\getopt.ps1"
  . "$psscriptroot\..\lib\depends.ps1"
  
-+if (test-path "$scoopdir\preinstall.ps1") {
-+    . "$scoopdir\preinstall.ps1"
++if (test-path "$scoopdir\persist\preinstall.ps1") {
++    . "$scoopdir\persist\preinstall.ps1"
 +}
 +
  reset_aliases
