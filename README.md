@@ -48,6 +48,23 @@ ensure_scoop_in_path
 scoop help
 ```
 
+## 替换环境
+```
+Remove-Item .git -Force -Recurse
+Remove-Item apps\scoop -Recurse
+Remove-Item buckets\main -Force -Recurse
+Remove-Item buckets\extras -Force -Recurse
+Remove-Item buckets\java -Force -Recurse
+Remove-Item buckets\nonportable -Force -Recurse
+Remove-Item buckets\jetbrains -Force -Recurse
+Remove-Item buckets\php -Force -Recurse
+Remove-Item buckets\versions -Force -Recurse
+Remove-Item buckets\ztj1993 -Force -Recurse
+Remove-Item patch -Force -Recurse
+Remove-Item .gitignore -Force -Recurse
+Remove-Item README.md -Force -Recurse
+```
+
 ## 删除环境
 ```
 scoop uninstall scoop
