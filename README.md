@@ -2,6 +2,8 @@
 
 ## 项目构建
 ```
+cd $env:USERPROFILE
+
 git clone --depth 1 https://github.com/ztj1993/scoop scoop
 git clone --depth 1 https://github.com/lukesampson/scoop scoop/apps/scoop/current
 git clone --depth 1 https://github.com/ScoopInstaller/Main scoop/buckets/main
