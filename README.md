@@ -37,8 +37,9 @@ git -C buckets/ztj1993 pull
 ```
 
 ## 项目安装
-在文件目录执行脚本：
 ```
+cd $env:USERPROFILE\scoop
+
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
 
 $env:SCOOP="$(Get-Location)"
