@@ -7,25 +7,22 @@ Scoop 是一个 Windows 便携软件管理器，可以通过命令行的方式�
 cd $env:USERPROFILE
 
 git clone --depth 1 https://github.com/ztj1993/scoop scoop
-git clone --depth 1 https://github.com/lukesampson/scoop scoop/apps/scoop/current
+git clone --depth 1 https://github.com/ScoopInstaller/Scoop scoop/apps/scoop/current
 git clone --depth 1 https://github.com/ScoopInstaller/Main scoop/buckets/main
-git clone --depth 1 https://github.com/lukesampson/scoop-extras scoop/buckets/extras
+git clone --depth 1 https://github.com/ScoopInstaller/Extras.git scoop/buckets/extras
 git clone --depth 1 https://github.com/ScoopInstaller/Java scoop/buckets/java
-git clone --depth 1 https://github.com/TheRandomLabs/scoop-nonportable scoop/buckets/nonportable
-git clone --depth 1 https://github.com/Ash258/Scoop-JetBrains scoop/buckets/jetbrains
+git clone --depth 1 https://github.com/ScoopInstaller/Nonportable scoop/buckets/nonportable
 git clone --depth 1 https://github.com/ScoopInstaller/PHP scoop/buckets/php
 git clone --depth 1 https://github.com/ScoopInstaller/Versions scoop/buckets/versions
-git clone --depth 1 https://github.com/ztj1993/scoop-bucket scoop/buckets/ztj1993
-
-git -C scoop/apps/scoop/current am ../../../patch/disable-automatic-update.patch
-git -C scoop/apps/scoop/current am ../../../patch/pre-install.patch
+git clone --depth 1 https://github.com/Ash258/Scoop-JetBrains scoop/buckets/jetbrains
 
 zip -qr scoop-$(date "+%Y%m%d").zip ./scoop
 ```
 
 ## 更新环境
-在文件目录执行脚本：
 ```
+cd $env:USERPROFILE/scoop
+
 git pull
 git -C apps/scoop/current pull
 git -C buckets/main pull
@@ -40,63 +37,13 @@ git -C buckets/ztj1993 pull
 
 ## 项目安装
 ```
-cd $env:USERPROFILE\scoop
-
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
-
-$env:SCOOP="$(Get-Location)"
-[Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
-
-. "$(Get-Location)\apps\scoop\current\lib\core.ps1"
-$dir = ensure (versiondir 'scoop' 'current')
-shim "$dir\bin\scoop.ps1" $false
-ensure_scoop_in_path
-
+cd $env:USERPROFILE/scoop
+.\apps\scoop\current\bin\refresh.ps1
 scoop help
 ```
 
-## 替换环境
-1.执行脚本：
+## 项目卸载
 ```
-cd $env:SCOOP
-
-Remove-Item .git -Force -Recurse
-Remove-Item apps\scoop -Recurse
-Remove-Item buckets\main -Force -Recurse
-Remove-Item buckets\extras -Force -Recurse
-Remove-Item buckets\java -Force -Recurse
-Remove-Item buckets\nonportable -Force -Recurse
-Remove-Item buckets\jetbrains -Force -Recurse
-Remove-Item buckets\php -Force -Recurse
-Remove-Item buckets\versions -Force -Recurse
-Remove-Item buckets\ztj1993 -Force -Recurse
-Remove-Item patch -Force -Recurse
-Remove-Item .gitignore -Force -Recurse
-Remove-Item README.md -Force -Recurse
+cd $env:USERPROFILE/scoop
+.\apps\scoop\current\bin\uninstall.ps1
 ```
-2.加压文件到目录
-
-## 删除环境
-1.执行脚本：
-```
-echo $env:SCOOP
-
-scoop uninstall scoop
-
-Remove-Item .git -Force -Recurse
-
-Remove-Item apps\scoop -Recurse
-
-Remove-Item buckets\main -Force -Recurse
-Remove-Item buckets\extras -Force -Recurse
-Remove-Item buckets\java -Force -Recurse
-Remove-Item buckets\nonportable -Force -Recurse
-Remove-Item buckets\jetbrains -Force -Recurse
-Remove-Item buckets\php -Force -Recurse
-Remove-Item buckets\versions -Force -Recurse
-
-Remove-Item patch -Force -Recurse
-Remove-Item .gitignore -Force -Recurse
-Remove-Item README.md -Force -Recurse
-```
-2.备份遗留文件
